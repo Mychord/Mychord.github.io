@@ -1,2 +1,2 @@
 # mychord.github.io
-Nothing to say
+This is a test site.
