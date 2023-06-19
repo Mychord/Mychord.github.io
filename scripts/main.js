@@ -17,12 +17,10 @@ function randomSelect(arr) {
   return arr[Math.floor(Math.random() * arr.length)];
 }
 
-const audioHrefs = ["audios/recreate.mp3", "audios/Scarborough Fair.mp3", "audios/starfall.mp3"];
+const audioSrcs = ["audios/recreate.mp3", "audios/Scarborough Fair.mp3", "audios/starfall.mp3"];
 const audioName = document.querySelector("#audioName");
 const audioSrc = document.querySelector("#audioSrc");
-const audioHref = document.querySelector("#audioHref");
 
-const randomAudio = randomSelect(audioHrefs);
+const randomAudio = randomSelect(audioSrcs);
 audioName.innerHTML = randomAudio.split("/")[1];
 audioSrc.setAttribute("src", randomAudio);
-audioHref.setAttribute("href", randomAudio);
