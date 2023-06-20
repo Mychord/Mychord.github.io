@@ -51,8 +51,12 @@ body {
   display: block;
 }
 
-#audioName {
+#audio-name {
   text-align: center;
+}
+
+#audio-src {
+  outline: none;
 }
 
 @media screen and (max-width: 480px) {

@@ -18,8 +18,8 @@ function randomSelect(arr) {
 }
 
 const audioSrcs = ["audios/recreate.mp3", "audios/Scarborough Fair.mp3", "audios/starfall.mp3"];
-const audioName = document.querySelector("#audioName");
-const audioSrc = document.querySelector("#audioSrc");
+const audioName = document.querySelector("#audio-name");
+const audioSrc = document.querySelector("#audio-src");
 
 const randomAudio = randomSelect(audioSrcs);
 audioName.innerHTML = randomAudio.split("/")[1];
