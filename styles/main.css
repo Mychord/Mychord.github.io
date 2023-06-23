@@ -1,0 +1,57 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  overflow: hidden;
+  margin: 0;
+}
+
+#start {
+  height: 42px;
+  width: 72px;
+  border: 1px solid rgb(255, 255, 255);
+  background-color: rgb(193, 255, 234);
+  border-radius: 6px;
+  box-shadow: 3px 3px 3px 1px rgba(50, 141, 252, 0.2);
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+#start:hover {
+  background-color: rgb(74, 255, 195);
+}
+
+#start.secret {
+  background-color: rgb(255, 255, 255);
+}
+
+#start.secret:hover {
+  color: white;
+  background-color: rgb(0, 0, 0);
+}
+
+#vortex {
+  position: absolute;
+  height: 100px;
+  width: 100px;
+  opacity: 0.6;
+  transition-duration: 0.6s;
+  animation-duration: 3s; /* 动画持续时间 */
+  animation-name: rotateSecondHand; /* 关键帧名字 */
+  animation-timing-function: linear; /* 动画时间函数 */
+  animation-iteration-count: infinite; /* 让动画永远执行下去 */
+}
+
+@keyframes rotateSecondHand {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
