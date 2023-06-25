@@ -17,8 +17,8 @@ function randomLocation() {
     return 0.3 * Math.random() + (Math.random() < 0.5 ? 0.1 : 0.6);
   };
 
-  const randomLeft = `${Math.round(window.innerWidth * randomNum())}px`;
-  const randomTop = `${Math.round(window.innerHeight * randomNum())}px`;
+  const randomLeft = `${Math.round(document.documentElement.clientWidth * randomNum())}px`;
+  const randomTop = `${Math.round(document.documentElement.clientHeight * randomNum())}px`;
 
   return [randomLeft, randomTop];
 }
@@ -50,7 +50,7 @@ class Snowflake {
     // 下降速度
     this.speed = 20;
     // 初始位置
-    this.left = Math.round(Math.random() * window.innerWidth);
+    this.left = Math.round(Math.random() * document.documentElement.clientWidth);
     this.top = 0;
     // 绑定元素
     this.el = el;
@@ -70,7 +70,7 @@ class Snowflake {
     }, 200);
   }
   falling() {
-    if(this.left < window.innerWidth && this.left >= 0 && this.top < window.innerHeight) {
+    if(this.left < document.documentElement.clientWidth && this.left > 0 && this.top < document.documentElement.clientHeight) {
       this.left += Math.round(Math.random() > 0.5 ? Math.random() * 10 : -Math.random() * 10);
       this.top += this.speed;
       this.el.style.left = `${this.left}px`;
