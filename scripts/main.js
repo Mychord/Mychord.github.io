@@ -1,13 +1,30 @@
-// 点击漩涡的次数
-let clickCount = 0;
+// 点击事件触发类型
+let triggerClick = "";
+
+// 根据浏览器是PC端还是移动端决定点击事件触发类型
+if (isMobile()) {
+  triggerClick = "touchstart";
+}
+else {
+  triggerClick = "click";
+}
+
+// 判断浏览器是PC端还是移动端
+function isMobile() {
+  let flag = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+  return flag;
+}
+
 
 /* 0 <= clickCount <= 4 */
 /* ------------------------------------------------------------------------------ */
+// 点击漩涡的次数
+let clickCount = 0;
 
 // 开始按钮
 const startButton = document.getElementById("start-button");
 // 为开始按钮添加点击事件
-startButton.addEventListener("click", (e) => {
+startButton.addEventListener(triggerClick, (e) => {
   if (clickCount == 0) {
     window.location.href = "normal.html";
   }
@@ -48,7 +65,7 @@ vortex.id = "vortex";
 [vortex.style.left, vortex.style.top] = randomLocation();
 document.body.append(vortex);
 // 为漩涡图片添加点击事件
-vortex.addEventListener("click", () => {
+vortex.addEventListener(triggerClick, () => {
   clickCount++;
   if (clickCount == 1) {
 
@@ -63,9 +80,9 @@ vortex.addEventListener("click", () => {
     vortex.remove();
     document.body.style.backgroundColor = "black";
     startButton.classList.add("secret");
-    snow();
     addMouseTrail();
     addMouseClick();
+    snow();
   }
   [vortex.style.left, vortex.style.top] = randomLocation();
 });
@@ -88,24 +105,27 @@ function snow() {
 
 // 添加鼠标尾迹
 function addMouseTrail() {
-  window.addEventListener("mousemove", (e) => {
-    const elem = document.createElement("div");
-    elem.className = "mouse-trail";
-    // 尾迹内容
-    elem.innerHTML = ".";
-    // 尾迹大小
-    elem.style.fontSize = "20px";
-    // 设置尾迹位置
-    elem.style.left = `${e.clientX - 2}px`;
-    elem.style.top = `${e.clientY - 16}px`;
-    document.body.append(elem);
-    setTimeout(() => elem.remove(), 200);
-  })
+  if(!isMobile()) {
+    window.addEventListener("mousemove", (e) => {
+      const elem = document.createElement("div");
+      elem.className = "mouse-trail";
+      // 尾迹内容
+      elem.innerHTML = ".";
+      // 尾迹大小
+      elem.style.fontSize = "20px";
+      // 设置尾迹位置
+      elem.style.left = `${e.clientX - 2}px`;
+      elem.style.top = `${e.clientY - 16}px`;
+      document.body.append(elem);
+      setTimeout(() => elem.remove(), 200);
+    });
+  }
 }
 
 // 添加鼠标点击特效
 function addMouseClick() {
   // 为屏幕添加点击事件
+  // 不使用 triggerClick
   document.body.addEventListener("click", (e) => {
     const div = document.createElement("div");
     div.innerHTML = "❄";
