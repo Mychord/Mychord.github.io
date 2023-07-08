@@ -29,22 +29,22 @@ startButton.addEventListener(triggerClick, (e) => {
     window.location.href = "normal.html";
   }
   else if (clickCount == 1) {
-
+    window.location.href = "spring.html";
   }
   else if (clickCount == 2) {
-
+    window.location.href = "summer.html";
   }
   else if (clickCount == 3) {
-
+    window.location.href = "autumn.html";
   }
   else if (clickCount == 4) {
-    window.location.href = "secret.html";
-    // 停止冒泡
-    e.stopPropagation()
+    window.location.href = "winter.html";
   }
+  // 停止冒泡
+  e.stopPropagation()
 });
 
-// 产生随机位置
+// 产生漩涡图片随机位置
 function randomLocation() {
   // 产生随机数 0.1 ~ 0.4  | 0.6 ~ 0.9
   const randomNum = () => {
@@ -80,7 +80,6 @@ vortex.addEventListener(triggerClick, () => {
     vortex.remove();
     document.body.style.backgroundColor = "black";
     startButton.classList.add("secret");
-    addMouseTrail();
     addMouseClick();
     snow();
   }
@@ -101,25 +100,6 @@ function snow() {
     document.body.append(div);
     snowflake.fall();
   }, 400);
-}
-
-// 添加鼠标尾迹
-function addMouseTrail() {
-  if(!isMobile()) {
-    window.addEventListener("mousemove", (e) => {
-      const elem = document.createElement("div");
-      elem.className = "mouse-trail";
-      // 尾迹内容
-      elem.innerHTML = ".";
-      // 尾迹大小
-      elem.style.fontSize = "20px";
-      // 设置尾迹位置
-      elem.style.left = `${e.clientX - 2}px`;
-      elem.style.top = `${e.clientY - 16}px`;
-      document.body.append(elem);
-      setTimeout(() => elem.remove(), 200);
-    });
-  }
 }
 
 // 添加鼠标点击特效

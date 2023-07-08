@@ -15,7 +15,7 @@ function removeActiveClasses() {
 }
 
 // 音乐集合
-const audioSrcs = ["audios/recreate.mp3", "audios/Scarborough Fair.mp3", "audios/starfall.mp3", "audios/desire.mp3"];
+const audioSrcs = ["audios/Recreate.mp3", "audios/Scarborough Fair.mp3", "audios/Starfall.mp3", "audios/Desire.mp3"];
 const audioName = document.querySelector("#audio-name");
 const audioSrc = document.querySelector("#audio-src");
 randomMusic();

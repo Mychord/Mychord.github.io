@@ -77,15 +77,6 @@ body {
   color: rgb(255, 255, 255);
 }
 
-.mouse-trail {
-  -moz-user-select: none;
-  -webkit-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  position: absolute;
-  color: rgb(255, 255, 255);
-}
-
 @keyframes rotateSecondHand {
   0% {
     transform: rotate(0deg);
