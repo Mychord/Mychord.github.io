@@ -65,7 +65,7 @@ vortex.id = "vortex";
 [vortex.style.left, vortex.style.top] = randomLocation();
 document.body.append(vortex);
 // 为漩涡图片添加点击事件
-vortex.addEventListener(triggerClick, () => {
+vortex.addEventListener(triggerClick, (event) => {
   clickCount++;
   if (clickCount == 1) {
 
@@ -82,6 +82,7 @@ vortex.addEventListener(triggerClick, () => {
     startButton.classList.add("secret");
     addMouseClick();
     snow();
+    event.stopPropagation();
   }
   [vortex.style.left, vortex.style.top] = randomLocation();
 });
