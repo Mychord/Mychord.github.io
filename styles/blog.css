@@ -1,0 +1,122 @@
+a,
+p,
+li {
+  font-family: "Times New Roman", SimSun, sans-serif;
+  font-style: normal;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+a:hover {
+  color: rgb(45, 100, 210);
+}
+
+h2 a:hover,
+h3 a:hover {
+  color: rgb(0, 0, 0);
+}
+
+p,
+li,
+ol,
+ul,
+img {
+  margin: 6px 0;
+}
+
+ol {
+  list-style: decimal;
+}
+
+ol,
+ul {
+  margin-left: 24px;
+}
+
+p code,
+li code {
+  color: rgb(255, 255, 255);
+  background-color: rgba(0, 0, 0, 0.865);
+  border-radius: 4px;
+  padding: 4px 6px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  border: 1px solid black;
+  padding: 8px;
+  text-align: left;
+}
+
+thead,
+tfoot {
+  background-color: rgb(230, 242, 248);
+}
+
+tbody > tr:nth-of-type(even) {
+  background-color: rgb(235, 236, 240);
+}
+
+.container {
+  height: 100%;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.table-container {
+  margin: 6px 12px;
+}
+
+.blog-time-tags {
+  font-size: 14px;
+  font-style: italic;
+  margin: 8px 0;
+}
+
+.navigation {
+  border-radius: 8px;
+  border: 1px solid rgb(125, 122, 122);
+  margin: 12px 0;
+  padding: 8px;
+}
+
+.code-preview {
+  border-radius: 12px;
+}
+
+.copy-to-clipboard-button:hover {
+  cursor: pointer;
+}
+
+.back-to-top {
+  position: fixed;
+  z-index: 100;
+  top: 480px;
+  right: 40px;
+  width: 40px;
+  height: 60px;
+  background-image: url("../resources/images/backToTop.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.back-to-top:hover {
+  cursor: pointer;
+}
+
+@media screen and (max-width: 1080px) {
+  .back-to-top {
+    right: 20px;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .back-to-top {
+    display: none;
+  }
+}

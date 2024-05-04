@@ -1,0 +1,25 @@
+.snowflake {
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  position: absolute;
+  color: rgb(255, 255, 255);
+  /* 动画持续时间 */
+  animation-duration: 4s;
+  /* 关键帧名字 */
+  animation-name: rotation;
+  /* 动画时间函数 */
+  animation-timing-function: linear;
+  /* 让动画永远执行下去 */
+  animation-iteration-count: infinite;
+}
+
+.extend-snowflake {
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  position: absolute;
+  color: rgb(255, 255, 255);
+}

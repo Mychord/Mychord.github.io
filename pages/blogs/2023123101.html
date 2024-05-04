@@ -1,0 +1,417 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="keywords" content="JavaScript,数据结构" />
+    <title>JavaScript 数据结构</title>
+    <link rel="shortcut icon" href="../../resources/icons/crown.ico" />
+    <link href="../../styles/base.css" rel="stylesheet" type="text/css" />
+    <link href="../../utils/prism/prism.css" rel="stylesheet" />
+    <link href="../../styles/blog.css" rel="stylesheet" type="text/css" />
+  </head>
+
+  <body>
+    <div class="container">
+      <header>
+        <h1>JavaScript 数据结构</h1>
+        <div class="blog-time-tags"></div>
+      </header>
+
+      <nav class="navigation">
+        <p><strong>目录</strong></p>
+        <ul class="navigation-content"></ul>
+      </nav>
+
+      <h2 id="简介"></h2>
+      <p class="introduction">使用 JavaScript 刷编程题时常用数据结构，包括双端队列、优先队列等。</p>
+
+      <h2 id="双端队列"></h2>
+      <pre class="line-numbers code-preview">
+        <code class="language-js">
+          class ListNode {
+            constructor(val, next = null, prev = null) {
+              this.val = val;
+              this.next = next;
+              this.prev = prev;
+            }
+          }
+          
+          class Deque {
+            constructor() {
+              this.head = new ListNode(-1);
+              this.tail = new ListNode(-1);
+              this.head.next = this.tail;
+              this.tail.prev = this.head;
+              this.count = 0;
+            }
+          
+            pushFront(val) {
+              const node = new ListNode(val);
+              node.prev = this.head;
+              node.next = this.head.next;
+              node.next.prev = node;
+              this.head.next = node;
+              this.count++;
+            }
+          
+            pushBack(val) {
+              const node = new ListNode(val);
+              node.prev = this.tail.prev;
+              node.next = this.tail;
+              node.prev.next = node;
+              this.tail.prev = node;
+              this.count++;
+            }
+          
+            popFront() {
+              if (this.isEmpty()) {
+                return -1;
+              }
+              const val = this.head.next.val;
+              this.head.next = this.head.next.next;
+              this.head.next.prev = this.head;
+              this.count--;
+              return val;
+            }
+          
+            popBack() {
+              if (this.isEmpty()) {
+                return -1;
+              }
+              const val = this.tail.prev.val;
+              this.tail.prev = this.tail.prev.prev;
+              this.tail.prev.next = this.tail;
+              this.count--;
+              return val;
+            }
+          
+            isEmpty() {
+              return this.count === 0;
+            }
+          
+            get size() {
+              return this.count;
+            }
+          }
+        </code>
+      </pre>
+
+      <h2 id="优先队列"></h2>
+      <pre class="line-numbers code-preview">
+        <code class="language-js">
+          class Heap {
+            constructor(cmp = (a, b) => a < b) {
+              this.arr = new Array();
+              this.cmp = (a, b) => cmp(a, b); //比较函数
+            }
+          
+            // 大小
+            size() {
+              return this.arr.length;
+            }
+          
+            // 判空
+            empty() {
+              return this.size() == 0;
+            }
+          
+            // 堆顶数据
+            top() {
+              return this.arr[0];
+            }
+          
+            // 入队
+            push(val) {
+              this.arr.push(val);
+              this.shiftUp();
+            }
+          
+            // 向上调整
+            shiftUp() {
+              let now = this.arr.length - 1;
+              while (now > 0) {
+                let t = (now - 1) >> 1;
+                if (this.cmp(this.arr[now], this.arr[t])) {
+                  [this.arr[now], this.arr[t]] = [this.arr[t], this.arr[now]];
+                  now = t;
+                } else break;
+              }
+            }
+          
+            // 出队
+            pop() {
+              if (this.size() == 1) return this.arr.pop();
+              const res = this.arr[0];
+              this.arr[0] = this.arr.pop();
+              this.shiftDown();
+              return res;
+            }
+          
+            // 向下调整
+            shiftDown() {
+              let now = 0;
+              while (now * 2 + 1 < this.size()) {
+                let t = now * 2 + 1;
+                if (t + 1 < this.size() && this.cmp(this.arr[t + 1], this.arr[t])) t++;
+                if (this.cmp(this.arr[t], this.arr[now])) {
+                  [this.arr[now], this.arr[t]] = [this.arr[t], this.arr[now]];
+                  now = t;
+                } else break;
+              }
+            }
+          }          
+        </code>
+      </pre>
+
+      <h2 id="并查集"></h2>
+      <p>
+        例题：
+        <a href="https://leetcode.cn/problems/making-a-large-island/" target="_blank"> 力扣 827. 最大人工岛 </a>
+      </p>
+      <pre class="line-numbers code-preview">
+        <code class="language-js">
+          class UnionFind {
+            constructor(n) {
+              this.parent = new Array(n).fill(0).map((_, index) => index);
+              this.size = new Array(n).fill(1);
+              // 当前连通分量数目
+              this.setCount = n;
+            }
+          
+            // find 操作 路径压缩
+            find(node) {
+              if (this.parent[node] === node) return node;
+              return (this.parent[node] = this.find(this.parent[node]));
+            }
+          
+            // union 操作 按秩合并
+            union(node1, node2) {
+              let root1 = this.find(node1);
+              let root2 = this.find(node2);
+              if (root1 === root2) return false;
+              if (this.size[root1] < this.size[root2]) {
+                [root1, root2] = [root2, root1];
+              }
+              this.parent[root2] = root1;
+              this.size[root1] += this.size[root2];
+              this.setCount -= 1;
+              return true;
+            }
+          
+            connected(node1, node2) {
+              const root1 = this.find(node1);
+              const root2 = this.find(node2);
+              return root1 === root2;
+            }
+          }          
+        </code>
+      </pre>
+
+      <h2 id="线段树"></h2>
+
+      <h3 id="支持区间修改-区间求和"></h3>
+      <p>
+        例题：
+        <a href="https://leetcode.cn/problems/handling-sum-queries-after-update/" target="_blank">
+          力扣 2569. 更新数组后处理求和查询
+        </a>
+      </p>
+      <pre class="line-numbers code-preview">
+        <code class="language-js">
+          class SegTree {
+            constructor(arr) {
+              this.arr = arr;
+              this.tree = new Array(this.arr.length << 2).fill(0);
+              this.lazy = new Array(this.arr.length << 2).fill(false);
+            }
+          
+            build(start, end, p) {
+              if (start === end) {
+                this.tree[p] = this.arr[start];
+                return;
+              }
+              const mid = (start + end) >> 1;
+              this.build(start, mid, p * 2 + 1);
+              this.build(mid + 1, end, p * 2 + 2);
+              this.tree[p] = this.tree[p * 2 + 1] + this.tree[p * 2 + 2];
+            }
+          
+            operator(start, end, p) {
+              this.tree[p] = end - start + 1 - this.tree[p];
+              this.lazy[p] = !this.lazy[p];
+            }
+          
+            maintain(start, end, p) {
+              const mid = (start + end) >> 1;
+              if (start !== end) {
+                this.operator(start, mid, p * 2 + 1);
+                this.operator(mid + 1, end, p * 2 + 2);
+              }
+              this.lazy[p] = false;
+            }
+          
+            query(l, r, start, end, p) {
+              if (l <= start && end <= r) return this.tree[p];
+              const mid = (start + end) >> 1;
+              let sum = 0;
+              if (this.lazy[p]) this.maintain(start, end, p);
+              if (l <= mid) sum += this.query(l, r, start, mid, p * 2 + 1);
+              if (r > mid) sum += this.query(l, r, mid + 1, end, p * 2 + 2);
+              return sum;
+            }
+          
+            update(l, r, start, end, p) {
+              if (l <= start && end <= r) {
+                this.operator(start, end, p);
+                return;
+              }
+              const mid = (start + end) >> 1;
+              if (this.lazy[p]) this.maintain(start, end, p);
+              if (l <= mid) this.update(l, r, start, mid, p * 2 + 1);
+              if (r > mid) this.update(l, r, mid + 1, end, p * 2 + 2);
+              this.tree[p] = this.tree[p * 2 + 1] + this.tree[p * 2 + 2];
+            }
+          }
+        </code>
+      </pre>
+
+      <h3 id="支持单点修改-区间求和"></h3>
+      <p>
+        例题：
+        <a href="https://leetcode.cn/problems/range-sum-query-mutable/" target="_blank">
+          力扣 307. 区域和检索 - 数组可修改
+        </a>
+      </p>
+      <pre class="line-numbers code-preview">
+        <code class="language-js">
+          class SegTree {
+            constructor(arr) {
+              this.arr = arr;
+              this.tree = new Array(this.arr.length << 2).fill(0);
+              this.lazy = new Array(this.arr.length << 2).fill(false);
+            }
+          
+            build(start, end, p) {
+              if (start === end) {
+                this.tree[p] = this.arr[start];
+                return;
+              }
+              const mid = (start + end) >> 1;
+              this.build(start, mid, p * 2 + 1);
+              this.build(mid + 1, end, p * 2 + 2);
+              this.tree[p] = this.tree[p * 2 + 1] + this.tree[p * 2 + 2];
+            }
+          
+            operator(p, val) {
+              this.tree[p] = val;
+            }
+          
+            query(l, r, start, end, p) {
+              if (l <= start && end <= r) return this.tree[p];
+              const mid = (start + end) >> 1;
+              let sum = 0;
+              if (l <= mid) sum += this.query(l, r, start, mid, p * 2 + 1);
+              if (r > mid) sum += this.query(l, r, mid + 1, end, p * 2 + 2);
+              return sum;
+            }
+          
+            update(l, r, start, end, p, val) {
+              if (l <= start && end <= r) {
+                this.operator(p, val);
+                return;
+              }
+              const mid = (start + end) >> 1;
+              if (l <= mid) this.update(l, r, start, mid, p * 2 + 1, val);
+              if (r > mid) this.update(l, r, mid + 1, end, p * 2 + 2, val);
+              this.tree[p] = this.tree[p * 2 + 1] + this.tree[p * 2 + 2];
+            }
+          }
+        </code>
+      </pre>
+
+      <h3 id="动态开节点线段树"></h3>
+      <p>
+        例题：
+        <a href="https://leetcode.cn/problems/count-integers-in-intervals/" target="_blank">
+          力扣 2276. 统计区间中的整数数目
+        </a>
+      </p>
+      <ol>
+        <li>支持区间修改-区间查询</li>
+        <li>未使用懒标记</li>
+      </ol>
+      <pre class="line-numbers code-preview">
+        <code class="language-js">
+          class Node {
+            constructor(start, end) {
+              this.val = 0;
+              this.start = start;
+              this.end = end;
+              this.left = null;
+              this.right = null;
+            }
+          }
+          
+          class SegTree {
+            constructor(start, end) {
+              this.root = new Node(start, end);
+            }
+          
+            update(start, end) {
+              this.updateNode(this.root, start, end);
+            }
+          
+            updateNode(node, start, end) {
+              if (!node) return;
+              if (start > node.end || end < node.start) return;
+              else if (start <= node.start && end >= node.end) {
+                node.val = node.end - node.start + 1;
+                return;
+              } else {
+                this.pushdown(node);
+                this.updateNode(node.left, start, end);
+                this.updateNode(node.right, start, end);
+                this.pushup(node);
+              }
+            }
+          
+            pushdown(node) {
+              if (!node) return;
+              const mid = (node.start + node.end) >> 1;
+              if (!node.left) node.left = new Node(node.start, mid);
+              if (!node.right) node.right = new Node(mid + 1, node.end);
+              if (node.val === node.end - node.start + 1) {
+                node.left.val = mid - node.start + 1;
+                node.right.val = node.end - mid;
+              }
+            }
+          
+            pushup(node) {
+              node.val = node.left.val + node.right.val;
+            }
+          
+            query(start, end) {
+              return this.queryNode(this.root, start, end);
+            }
+          
+            queryNode(node, start, end) {
+              if (!node) return 0;
+              if (start > node.end || end < node.start) return 0;
+              else if (start <= node.start && end >= node.end) return node.val;
+              else {
+                this.pushdown(node);
+                return this.queryNode(node.left, start, end) + this.queryNode(node.right, start, end);
+              }
+            }
+          }
+        </code>
+      </pre>
+    </div>
+
+    <div class="back-to-top" title="回到顶部"></div>
+
+    <script src="../../utils/prism/prism.js"></script>
+    <script src="../../scripts/blog.js" type="module"></script>
+  </body>
+</html>

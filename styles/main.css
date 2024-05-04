@@ -1,0 +1,109 @@
+@import url("../utils/snow/snow.css");
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  overflow: hidden;
+  background-color: rgb(255, 255, 255);
+}
+
+body.secret {
+  background-color: rgb(0, 0, 0);
+}
+
+#start-button {
+  height: 42px;
+  width: 72px;
+  border: 1px solid rgb(255, 255, 255);
+  background-color: rgb(193, 255, 234);
+  border-radius: 6px;
+  box-shadow: 3px 3px 3px 1px rgba(50, 141, 252, 0.2);
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+#start-button:hover {
+  background-color: rgb(93, 255, 201);
+}
+
+#start-button.secret {
+  background-color: rgb(255, 255, 255);
+}
+
+#start-button.secret:hover {
+  color: white;
+  background-color: rgb(0, 0, 0);
+}
+
+.vortex {
+  position: absolute;
+  height: 100px;
+  width: 100px;
+  opacity: 0.6;
+  transition-duration: 0.6s;
+  /* 动画持续时间 */
+  animation-duration: 3s;
+  /* 关键帧名字 */
+  animation-name: rotation;
+  /* 动画时间函数 */
+  animation-timing-function: linear;
+  /* 让动画永远执行下去 */
+  animation-iteration-count: infinite;
+}
+
+.vortex:hover {
+  cursor: pointer;
+}
+
+.moon {
+  animation: none;
+  border-radius: 50%;
+  box-shadow: 0 0 20px rgba(255, 120, 120, 0.8);
+}
+
+.gitee-logo {
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 64px;
+  width: 64px;
+  background-image: url("../resources/images/giteeLogo.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  border-radius: 0 0 0 100%;
+  transition: opacity 0.5s ease;
+}
+
+.gitee-logo.remove {
+  opacity: 0;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .vortex {
+    height: 64px;
+    width: 64px;
+  }
+
+  .gitee-logo {
+    height: 48px;
+    width: 48px;
+  }
+}

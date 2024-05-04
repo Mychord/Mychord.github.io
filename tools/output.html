@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>文本转换输出</title>
+    <link rel="shortcut icon" href="../../resources/icons/crown.ico" />
+    <link href="../../styles/blog.css" rel="stylesheet" type="text/css" />
+  </head>
+
+  <body>
+    <p>从路径中获取信息</p>
+    <p>给定一条路径，你可以使用这些方法从中提取信息：</p>
+    <p>·dirname: 获取文件的父文件夹</p>
+    <p>·basename: 获取文件名部分</p>
+    <p>·extname: 获取文件扩展名</p>
+    <p>如：</p>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;const notes = '/users/joe/notes.txt';</p>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;path.dirname(notes); // /users/joe</p>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;path.basename(notes); // notes.txt</p>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;path.extname(notes); // .txt</p>
+    <p>使用路径</p>
+    <p>可以使用 path.resolve() 获取相对路径的绝对路径计算。</p>
+    <p>如：</p>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;path.resolve('joe.txt'); // '/Users/joe/joe.txt' if run from my home folder</p>
+    <p>
+      &nbsp;&nbsp;&nbsp;&nbsp;如果指定第二个参数文件夹，resolve
+      将使用第一个作为第二个的基础。如果第一个参数以斜杠开头，则表示它是绝对路径。
+    </p>
+    <p>如：</p>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;path.resolve('/etc', 'joe.txt'); // '/etc/joe.txt'</p>
+    <p>
+      &nbsp;&nbsp;&nbsp;&nbsp;path.normalize() 是另一个有用的函数，当它包含诸如 . 或 ..
+      或双斜线的相对说明符时，它将尝试计算实际路径。
+    </p>
+    <p>如：</p>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;path.normalize('/users/joe/..//test.txt'); // '/users/test.txt'</p>
+    <p>注意：resolve 和 normalize 都不会检查路径是否存在. 他们只是根据他们得到的信息计算出一条路径。</p>
+    <p>
+      这个方法会将当前的变形矩阵重置为单位矩阵，然后用相同的参数调用
+      transform方法。如果任意一个参数是无限大，那么变形矩阵也必须被标记为无限大，否则会抛出异常。从根本上来说，该方法是取消了当前变形，然后设置为指定的变形，一步完成。
+    </p>
+  </body>
+</html>

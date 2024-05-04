@@ -1,0 +1,19 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  color: rgb(0, 0, 0);
+  text-decoration: none;
+}
+
+.back-link {
+  position: fixed;
+  left: 8px;
+  top: 8px;
+  height: 28px;
+  width: 28px;
+  z-index: 999;
+}

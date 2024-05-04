@@ -1,0 +1,116 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- keywords：与页面内容相关的关键词,使用逗号分隔 -->
+    <meta name="keywords" content="前端,Git,HTML,CSS,JavaScript" />
+    <!-- 标题 -->
+    <title>模板</title>
+    <link rel="shortcut icon" href="../../resources/icons/crown.ico" />
+    <link href="../../styles/base.css" rel="stylesheet" type="text/css" />
+    <link href="../../utils/prism/prism.css" rel="stylesheet" />
+    <link href="../../styles/blog.css" rel="stylesheet" type="text/css" />
+  </head>
+
+  <body>
+    <!-- 博客模板 -->
+    <div class="container">
+      <header>
+        <!-- 标题 -->
+        <h1>文章标题</h1>
+        <!-- 时间及标签 -->
+        <div class="blog-time-tags"></div>
+      </header>
+
+      <!-- 导航栏 无需编辑 -->
+      <nav class="navigation">
+        <p><strong>目录</strong></p>
+        <ul class="navigation-content"></ul>
+      </nav>
+
+      <!-- 子标题 仅设置 id -->
+      <h2 id="简介"></h2>
+      <p class="introduction">这是一个简介。</p>
+
+      <!-- 段落 -->
+      <p>
+        <strong>注意：</strong>
+        <code>path.resolve()</code> 和 <code>path.normalize()</code>
+        都不会检查路径是否存在.他们只是根据他们得到的信息计算出一条路径。
+      </p>
+      <p>
+        这个方法会将当前的变形矩阵重置为单位矩阵，然后用相同的参数调用
+        transform方法。如果任意一个参数是无限大，那么变形矩阵也必须被标记为无限大，否则会抛出异常。从根本上来说，该方法是取消了当前变形，然后设置为指定的变形，一步完成。
+      </p>
+
+      <!-- 列表 -->
+      <p>特点：</p>
+      <ol>
+        <li>支持客户/服务器模式</li>
+        <li>
+          简单快速：客户向服务器请求服务时，只需传送请求方法和路径。由于HTTP协议简单，使得HTTP服务器的程序规模小，因而通信速度很快
+        </li>
+        <li>灵活：HTTP允许传输任意类型的数据对象。正在传输的类型由Content-Type加以标记</li>
+        <li>
+          无连接：无连接的含义是限制每次连接只处理一个请求。服务器处理完客户的请求，并收到客户的应答后，即断开连接。采用这种方式可以节省传输时间
+        </li>
+        <li>无状态：HTTP协议无法根据之前的状态进行本次的请求处理</li>
+      </ol>
+
+      <!-- 表格 -->
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Person</th>
+              <th>Most interest in</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>数据1</td>
+              <td>数据2</td>
+            </tr>
+            <tr>
+              <td>数据3</td>
+              <td>数据4</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- 图片 -->
+      <div style="text-align: center">
+        <img
+          data-src="../../resources/images/emptyImage.jpg"
+          alt="漩涡"
+          style="height: 200px; width: auto"
+          class="lazy-image"
+        />
+      </div>
+
+      <!-- 代码预览 -->
+      <pre class="line-numbers code-preview">
+        <code class="language-js">
+          // JavaScript 代码
+          function test() {
+            return true;
+          }
+        </code>
+      </pre>
+      <pre class="line-numbers code-preview">
+        <code class="language-markup"><!--
+          // HTML 代码
+          <div>Test</div>
+        --></code>
+      </pre>
+    </div>
+
+    <!-- 回到顶部图标 -->
+    <div class="back-to-top" title="回到顶部"></div>
+
+    <script src="../../utils/prism/prism.js"></script>
+    <script src="../../scripts/blog.js" type="module"></script>
+  </body>
+</html>

@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mychord</title>
+    <link rel="shortcut icon" href="../resources/icons/crown.ico" />
+    <link href="../styles/normal.css" rel="stylesheet" type="text/css" />
+    <link href="../styles/base.css" rel="stylesheet" type="text/css" />
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="content">
+        <div class="search-box">
+          <div class="search-input">
+            <img src="../resources/images/searchButton.jpg" class="search-button" />
+            <img src="../resources/images/deleteButton.jpg" class="delete-button" />
+            <input type="text" class="search-text" />
+            <div class="search-engine-container">
+              <img src="../resources/images/bingIcon.jpg" class="search-engine-icon" />
+              <div class="search-engine-content">
+                <div class="arrow"></div>
+                <div class="search-engine-header">
+                  <strong>请选择默认引擎:</strong>
+                </div>
+                <ul class="search-engine-list">
+                  <li data-engine="bing">
+                    <img src="../resources/images/bingIcon.jpg" alt="Bing" />
+                    必应
+                  </li>
+                  <li data-engine="gogo">
+                    <img src="../resources/images/gogoIcon.jpg" alt="勾勾" />
+                    勾勾
+                  </li>
+                  <li data-engine="yandex">
+                    <img src="../resources/images/yandexIcon.jpg" alt="Yandex" />
+                    Yandex
+                  </li>
+                  <li data-engine="google">
+                    <img src="../resources/images/googleIcon.jpg" alt="Google" />
+                    Google
+                  </li>
+                  <li data-engine="baidu">
+                    <img src="../resources/images/baiduIcon.jpg" alt="百度" />
+                    百度
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <ul class="suggestion-container"></ul>
+        </div>
+        <div class="website-container">
+          <div class="website-item" data-type="recommend">
+            <div><strong>推荐</strong></div>
+          </div>
+          <div class="website-item" data-type="tools">
+            <div><strong>工具</strong></div>
+          </div>
+          <div class="website-item" data-type="recreation">
+            <div><strong>娱乐</strong></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <a href="/">
+      <img src="../resources/images/backLastPageIcon.jpg" class="back-link" />
+    </a>
+
+    <script src="../scripts/normal.js" type="module"></script>
+  </body>
+</html>

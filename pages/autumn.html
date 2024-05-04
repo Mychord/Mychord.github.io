@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mychord</title>
+    <link rel="shortcut icon" href="../resources/icons/crown.ico" />
+    <link href="../styles/autumn.css" rel="stylesheet" type="text/css" />
+    <link href="../styles/base.css" rel="stylesheet" type="text/css" />
+
+    <style>
+      /* css for catch-the-cat game */
+      body {
+        background-color: #eeeeee;
+      }
+
+      #catch-the-cat {
+        width: 100%;
+        margin-top: 32px;
+        text-align: center;
+      }
+    </style>
+  </head>
+
+  <body>
+    <script src="../utils/catch-the-cat/phaser.min.js"></script>
+    <script src="../utils/catch-the-cat/catch-the-cat.js"></script>
+    <div id="catch-the-cat"></div>
+
+    <a href="/">
+      <img src="../resources/images/backLastPageIcon.jpg" class="back-link" />
+    </a>
+
+    <script>
+      window.game = new CatchTheCatGame({
+        w: 11,
+        h: 11,
+        r: 20,
+        initialWallCount: 8,
+        backgroundColor: 0xffffff,
+        parent: "catch-the-cat",
+        statusBarAlign: "center",
+        credit: "github.com/ganlvtech"
+      });
+    </script>
+  </body>
+</html>

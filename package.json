@@ -1,0 +1,9 @@
+{
+  "scripts": {
+    "build": "node ./tools/TextTransform.js",
+    "format": "prettier --write ./tools/output.html"
+  },
+  "devDependencies": {
+    "prettier": "3.1.1"
+  }
+}
