@@ -69,20 +69,20 @@ body.secret {
   box-shadow: 0 0 20px rgba(255, 120, 120, 0.8);
 }
 
-.gitee-logo {
+.logo {
   position: absolute;
   right: 0;
   top: 0;
   height: 64px;
   width: 64px;
-  background-image: url("../resources/images/giteeLogo.png");
+  background-image: url("../resources/images/githubLogo.jpg");
   background-size: contain;
   background-repeat: no-repeat;
   border-radius: 0 0 0 100%;
   transition: opacity 0.5s ease;
 }
 
-.gitee-logo.remove {
+.logo.remove {
   opacity: 0;
 }
 
@@ -102,7 +102,7 @@ body.secret {
     width: 64px;
   }
 
-  .gitee-logo {
+  .logo {
     height: 48px;
     width: 48px;
   }

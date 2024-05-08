@@ -24,10 +24,8 @@ let clickCount = 0;
 const startLink = document.getElementById("start-link");
 // 开始按钮
 const startButton = document.getElementById("start-button");
-// Gitee Link
-const giteeLink = document.body.querySelector(".gitee-link");
-// Gitee Logo
-const giteeLogo = document.querySelector(".gitee-logo");
+// Logo
+const logo = document.querySelector(".logo");
 
 startLink.addEventListener(triggerClick, (e) => {
   // 停止冒泡
@@ -63,14 +61,14 @@ vortex.addEventListener(triggerClick, (event) => {
     vortex.classList.remove("moon");
     document.body.classList.remove("secret");
     startButton.classList.remove("secret");
-    giteeLogo.classList.remove("remove");
-    giteeLogo.style.display = "block";
+    logo.classList.remove("remove");
+    logo.style.display = "block";
     snow.stop();
     startLink.href = "pages/normal.html";
   } else if (clickCount == 1) {
-    giteeLogo.classList.add("remove");
+    logo.classList.add("remove");
     setTimeout(() => {
-      giteeLogo.style.display = "none";
+      logo.style.display = "none";
     }, 500);
     startLink.href = "pages/spring.html";
   } else if (clickCount == 2) {
